@@ -130,4 +130,6 @@ counters_name_map_for_ncu = {
     "block_limit_register": ("launch__occupancy_limit_registers", float),
     "block_limit_warps": ("launch__occupancy_limit_warps", float),
     "register_per_thread": ("launch__registers_per_thread", int),
+    "kernel_name": ("Kernel Name", str),
+
 }

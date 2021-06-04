@@ -35,8 +35,8 @@ def work(report, dot_graph_name, memoryconfig):
         root_percentage = 0
     hw_tree.percentage = 1 - root_percentage
 
-    hw_tree.suffix_label = ""
-
+    hw_tree.prefix_label = get_kernel_name(all_stats['kernel_name'].value) + "\n"
+    hw_tree.suffix_label = ''
     best_possible = 100 * (
             1.0 - 1.0 / (np.ceil(all_stats['activewarps_per_activecycle'].value / config.quadrants_per_SM)))
     hw_tree.suffix_label += r" (lowest possible: %i%% for %i active warps)" % (

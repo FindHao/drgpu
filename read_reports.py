@@ -39,7 +39,7 @@ def select_all_counters_ncu(raw_counters_df, stats, kernel_id):
             # if raw_counters_df_first.loc[kernel_id + 1, cname_in_ncu] != 'nan':
 
             raw_item = raw_counters_df_first.loc[kernel_id + 1, cname_in_ncu]
-            tmp_stat.value = convert_raw_item(raw_item)
+            tmp_stat.value = convert_raw_item(raw_item, as_type)
             stats[counter_name] = tmp_stat
             if counter_name == 'retireIPC':
                 pass
@@ -245,17 +245,30 @@ def fill_source_report(report: Report, analysis: Analysis):
                 analysis.stall_sass_code[stalls_mapping_to_detail_report[stall_reason]] = new_dict
 
 
-def convert_raw_item(aitem):
+def convert_raw_item(aitem, as_type=float):
     if aitem == 'nan':
         return 0
-    atype = type(aitem)
-    if atype in [float, int]:
+    real_type = type(aitem)
+
+    if real_type in [float, int]:
         return aitem
-    if atype == str:
-        if aitem.find('.') >= 0:
-            return float(aitem.replace(',', ''))
+    elif real_type == str:
+        if as_type == str:
+            return aitem
         else:
-            return int(aitem.replace(',', ''))
+            if aitem.find('.') >= 0:
+                return float(aitem.replace(',', ''))
+            else:
+                return int(aitem.replace(',', ''))
     else:
         print("unrecognized type of %s " % str(aitem))
         exit(-1)
+
+def get_kernel_name(raw_kernel_name):
+    if len(raw_kernel_name) > 20:
+        left = raw_kernel_name.find("(")
+        if left >= 0:
+            return raw_kernel_name[:left]
+        return raw_kernel_name[:20]
+    else:
+        return raw_kernel_name
