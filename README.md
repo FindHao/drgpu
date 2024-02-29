@@ -64,12 +64,22 @@ drgpu_entry.py -i btree.csv -s btree_s.csv -c gtx1650 -o btree
 
 DrGPU will generate two files in current folder,  `dots/btree`  and `dots/btree.svg`.
 
-![]()
 
-[The image may not be latest.]
 
 According to suggestions and values in the performance analysis tree, you can try to optimize your code.
 
-
-
 More detailed usage could be found in other pages in this manual.
+
+## Citation
+
+If you use our research work in your projects, we kindly request that you cite the following paper:
+```
+@inproceedings{hao2023drgpu,
+  title={DrGPU: A Top-Down Profiler for GPU Applications},
+  author={Hao, Yueming and Jain, Nikhil and Van der Wijngaart, Rob and Saxena, Nirmal and Fan, Yuanbo and Liu, Xu},
+  booktitle={Proceedings of the 2023 ACM/SPEC International Conference on Performance Engineering},
+  pages={43--53},
+  year={2023}
+}
+```
+
